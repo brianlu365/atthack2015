@@ -32,11 +32,11 @@
       <ion-content>
 
         <div class="weather">
-          <img src="img/350x80FairIcon.png">
+          <img src="img/350x80FairIconWithTemp.png">
           <!-- <h3> asdas&deg;</h3>   -->
         </div>
 
-        <div class="slider shirts">
+        <div class="slider shirts" ng-controller='ShirtSlideController'>
           <ion-slide-box on-slide-changed="slideHasChanged($index)" does-continue=true>
             <ion-slide>
               <div>
@@ -71,7 +71,7 @@
           </ion-slide-box>
         </div>
 
-        <div class="slider pants">
+        <div class="slider pants" ng-controller='PantsSlideController'>
           <ion-slide-box on-slide-changed="slideHasChanged($index)"  does-continue=true>
             <ion-slide>
               <div>
