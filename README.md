@@ -1,7 +1,10 @@
-atthack2015
-===========
+Clothes-It atthack2015
+======================
 
 at&amp;t hackathon 2015
 
-Hello, Brian. This is a test commit.
-I've changed my name. This is another test commit.
+Technologies used:
+*At&t M2X
+*mBed
+*Cordova and ionic framework
+
