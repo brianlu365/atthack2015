@@ -13,6 +13,11 @@
   <preference name="UIWebViewBounce" value="false"/>
   <preference name="DisallowOverscroll" value="true"/>
   <preference name="BackupWebStorage" value="none"/>
+  <platform name="ios">
+    <icon src="res/ios/48x48ClothesItIcon.png" width="48" height="48" density="mdpi" />
+    <splash src="res/ios/640x960SplashScreenWithTitle.png" width="640" height="960" />
+  </platform>
+  <preference name="SplashScreenDelay" value="10000" />
   <feature name="StatusBar">
     <param name="ios-package" value="CDVStatusBar" onload="true"/>
   </feature>

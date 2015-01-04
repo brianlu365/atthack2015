@@ -6,3 +6,14 @@ body {
 .background, .background .pane, .background .item, .background .item-complex .item-content {
   background-color: #c86023;
 }
+
+.weather {
+  position: relative;
+  width: 100%;
+}
+
+h2 {
+  position: absolute;
+  right: 10px;
+  width: 100%;
+}
