@@ -19,7 +19,9 @@
     <script src="cordova.js"></script>
 
     <!-- your app's js -->
+    <script type="text/javascript" src="js/m2x-2.0.0.min.js"></script>
     <script src="js/app.js"></script>
+
   </head>
   <body ng-app="starter">
 
@@ -30,52 +32,82 @@
       <ion-content>
 
         <div class="weather">
-          <img src="http://placehold.it/350x80">
-          <h2> asdas&deg;</h2>  
+          <img src="img/350x80FairIcon.png">
+          <!-- <h3> asdas&deg;</h3>   -->
         </div>
 
-        <div class="slider">
-          <ion-slide-box on-slide-changed="slideHasChanged($index)">
+        <div class="slider shirts">
+          <ion-slide-box on-slide-changed="slideHasChanged($index)" does-continue=true>
             <ion-slide>
-              <div class="box blue">
-                <img src="http://placehold.it/350x200">
+              <div>
+                <img src="img/up1.jpg">
               </div>
             </ion-slide>
             <ion-slide>
-              <div class="box yellow">
-              <img src="http://placehold.it/350x200">
+              <div>
+              <img src="img/up2.jpg">
               </div>
             </ion-slide>
             <ion-slide>
-              <div class="box pink">
-              <img src="http://placehold.it/350x200">
+              <div>
+              <img src="img/up3.jpg">
+              </div>
+            </ion-slide>
+            <ion-slide>
+              <div>
+              <img src="img/up4.jpg">
+              </div>
+            </ion-slide>
+            <ion-slide>
+              <div>
+              <img src="img/up5.jpg">
+              </div>
+            </ion-slide>
+            <ion-slide>
+              <div>
+              <img src="img/up6.jpg">
               </div>
             </ion-slide>
           </ion-slide-box>
         </div>
 
-        <div class="slider">
-          <ion-slide-box on-slide-changed="slideHasChanged($index)">
+        <div class="slider pants">
+          <ion-slide-box on-slide-changed="slideHasChanged($index)"  does-continue=true>
             <ion-slide>
-              <div class="box blue">
-                <img src="http://placehold.it/350x200">
+              <div>
+              <img src="img/down1.jpg">
               </div>
             </ion-slide>
             <ion-slide>
-              <div class="box yellow">
-              <img src="http://placehold.it/350x200">
+              <div>
+              <img src="img/down2.jpg">
               </div>
             </ion-slide>
             <ion-slide>
-              <div class="box pink">
-              <img src="http://placehold.it/350x200">
+              <div>
+              <img src="img/down3.jpg">
+              </div>
+            </ion-slide>
+            <ion-slide>
+              <div>
+              <img src="img/down4.jpg">
+              </div>
+            </ion-slide>
+            <ion-slide>
+              <div>
+              <img src="img/down5.jpg">
+              </div>
+            </ion-slide>
+            <ion-slide>
+              <div>
+              <img src="img/down6.jpg">
               </div>
             </ion-slide>
           </ion-slide-box>
         </div>
         <div style="margin-left: 10px; margin-right: 10px;">
-          <button class="button button-block button-positive" >
-            Pick
+          <button onclick="selectClothes()" class="button button-block button-positive" >
+            Choose Outfit
           </button>
         </div>
 

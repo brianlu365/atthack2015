@@ -4,7 +4,6 @@
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
 angular.module('starter', ['ionic'])
-
 run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
@@ -17,26 +16,20 @@ run(function($ionicPlatform) {
       StatusBar.styleDefault();
     }
 
+
   });
 })
 
-// app.controller('weather', function ($scope) {
-//   $http.get('https://query.yahooapis.com/v1/public/yql?q=select%20item.condition%20from%20weather.forecast%20where%20woeid%20%3D%202487889&format=json&env=store%3A%2F%2Fdatatables.org%2Falltableswithkeys').
-//     success(function(data, status, headers, config) {
-//       // this callback will be called asynchronously
-//       // when the response is available
-//       console.log(data)
-//       $scope.weather = data;
-      
-//     }).
-//     error(function(data, status, headers, config) {
-//       // called asynchronously if an error occurs
-//       // or server returns response with an error status.
-//     });
-// });
-// $.ajax({
-//   url:'https://query.yahooapis.com/v1/public/yql?q=select%20item.condition%20from%20weather.forecast%20where%20woeid%20%3D%202487889&format=json&env=store%3A%2F%2Fdatatables.org%2Falltableswithkeys',
-//   success: function(result) {
-//     $('.temp').text() = result.stringify()
-//   }
-// });
+var shirtIndex = 0;
+var pantsIndex = 0;
+
+function selectClothes(){
+  console.log("hi")
+  var m2x = new M2X("f68404a95d271e5d81c4d7f9224cbd8d");
+  var date = new Date();
+  m2x.devices.postMultiple('bb84147dbab191356d0b5fb090c19a9e', 
+    {
+      "shirtposition": [{ "timestamp": date.toISOString(), "value": 3 }],
+      "pantsposition": [{ "timestamp": date.toISOString(), "value": 4 }]
+    })
+}
