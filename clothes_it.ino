@@ -37,6 +37,7 @@
  
  */
 #include <SoftwareSerial.h>
+#include <stdlib.h>
 
 SoftwareSerial mySerial(10, 11); // RX, TX
 
@@ -67,6 +68,7 @@ int dir_top;
 int dir_bot;
 
 int data;
+char data1;
 unsigned long time;
 
 int steps_per_rev = 200;
@@ -103,7 +105,7 @@ void setup()
   Serial.println("Goodnight moon!");
 
   // set the data rate for the SoftwareSerial port
-  mySerial.begin(4800);
+  mySerial.begin(9600);
   mySerial.println("Hello, world?");
 }
 
@@ -115,23 +117,62 @@ void loop() // run over and over
   //Code for just in case button
   if(!digitalRead(8))
   {
-    top_pos_new = 100;7 
-    bot_pos_new = 100;
+    top_pos_new = 3;
+    bot_pos_new = 4;
     Serial.println("oh noes!");
   }
   
-  if (Serial.available())
+  if (mySerial.available())
   {
     //read serial input
     data = mySerial.read();
+    //Serial.println(data1);
+     //if((data1 >=48) && (data1 <= 57))
+       //data = data1-48;
+     //else if((data1>=65) && (data1<=67))
+       //data = data1-65;
+    Serial.println(data);
+    if ((data>=48)&&(data<=57))
+      data=data-48;
+    else
+    {  
+      switch (data)
+      {
+        case 'a':
+          data = 10;
+          break;
+        case 'b':
+          data = 11;
+          break;
+        case 'c':
+          data = 12;
+          break;
+      }
+    }
+    
+    //Serial.println(data);
     //for debugging to let me use the serial monitor
-    data = Serial.read();
+    //data = Serial.read();
     //parse data: the first 4 bits are for the top the second 4 bits are for the bottom
-    top_pos_new = map(data & B00001111, 0, 6, 0, steps_per_rev);
-    bot_pos_new = map(data & B11110000, 0, 6, 0, steps_per_rev);
-    //Print to the serial monitor for debugging
-    //Serial.println(top_pos_new);
-    //Serial.println(bot_pos_new);
+    //if 0 or greater than 6 is recieved do nothing
+    if((data != 0) && (data < 7))
+    {
+      top_pos_new = map(data, 1, 7, 0, steps_per_rev);
+      //Print to the serial monitor for debugging
+      //Serial.println(data);
+      Serial.print("top = ");
+      Serial.println(data);
+      Serial.println(top_pos_new);
+    }
+      
+    if((data != 0) && (data > 6) && (data < 13))
+    {
+      bot_pos_new = map(data-6, 1, 7, 0, steps_per_rev);
+      //Print to the serial monitor for debugging
+      Serial.print("bot = ");
+      Serial.println(data);
+      Serial.println(bot_pos_new);
+    }
   }
     
     //Logic for figuring out steps to take for position
@@ -171,34 +212,32 @@ void loop() // run over and over
           else
             top_pos_current = 0;
       }
-      Serial.println(top_pos_current);
-      Serial.println(top_pos_new);
+      //Serial.println(top_pos_current);
+      //Serial.println(top_pos_new);
     }
     
     //Check if our current position is equal to the desired position
     if(bot_pos_current != bot_pos_new)
     {
-      //bottom
       //actually change dir pins outputs now
-       digitalWrite(dir_pin_top, dir_top);
+      digitalWrite(dir_pin_bot, dir_bot);
       move_step(2);
-      if(bot_pos_current != bot_pos_new)
-      {
-        if(bot_pos_current > bot_pos_new)
-          dir_bot = 0;
-        else
-          dir_bot = 1;
-        steps_to_take_bot = abs(bot_pos_current-bot_pos_new);
-        if(steps_to_take_bot > steps_per_rev/2)
+      if(dir_bot == 0)
         {
-          steps_to_take_bot = steps_to_take_bot - steps_per_rev/2;
-          if(dir_bot == 0)
-            dir_bot = 1;
+          if(bot_pos_current !=0)
+            bot_pos_current -= 1;
           else
-            dir_bot = 0;
-        }  
-        digitalWrite(dir_pin_bot, dir_bot);
+            bot_pos_current = steps_per_rev;
+        }
+      else
+      {
+          if(bot_pos_current !=steps_per_rev)
+            bot_pos_current += 1;
+          else
+            bot_pos_current = 0;
       }
+      //Serial.println(bot_pos_current);
+      //Serial.println(bot_pos_new);
     }
     
 }
@@ -209,17 +248,17 @@ void move_step(int motor_num)
   {
       //move tops specified steps
       digitalWrite(step_pin_top, HIGH);
-      delay(50);               
+      delay(10);               
       digitalWrite(step_pin_top, LOW);
-      delay(100);
+      delay(10);
   }    
   if(motor_num == 2)
   {
       //move tops specified steps
       digitalWrite(step_pin_bot, HIGH);
-      delay(50);               
+      delay(10);               
       digitalWrite(step_pin_bot, LOW);
-      delay(100);
+      delay(50);
   }
   //Serial.println("returned");
   return;
