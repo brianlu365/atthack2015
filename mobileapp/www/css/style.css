@@ -1,1 +1,8 @@
 /* Empty. Add your own CSS if you like */
+body {
+  background-color: #c86023;
+}
+
+.background, .background .pane, .background .item, .background .item-complex .item-content {
+  background-color: #c86023;
+}
