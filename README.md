@@ -12,4 +12,7 @@ at&amp;t hackathon 2015
 * Sparkfun Redboard
 * Pololu stepper motor driver
 
+##How It Works
+The 
+
 
